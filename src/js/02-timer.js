@@ -33,7 +33,7 @@ const options = {
     const currentDate = Date.now();
     let deltaTime = selectedDate - currentDate;
 
-    if (deltaTime <= 0) variables.startBtn.removeAttribute('disabled');
+    if (deltaTime >= 0) variables.startBtn.removeAttribute('disabled');
   },
 };
 
