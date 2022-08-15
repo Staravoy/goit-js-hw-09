@@ -4,7 +4,7 @@ form[0].addEventListener('submit', formSubmit);
  
 function formSubmit(e) {
   e.preventDefault();
-  let delay = form[0].elements.delay;
+  let delay = form[0].elements.delay.value;
   let step = form[0].elements.step.value;
   let position = form[0].elements.amount.value;
  
@@ -24,14 +24,15 @@ function formSubmit(e) {
 }
  
 function createPromise(position, delay) {
+  const shouldResolve = Math.random() > 0.3;
+
   return new Promise((resolve, reject) => {
-    const shouldResolve = Math.random() > 0.3;
-    if (shouldResolve) {
-      // Fulfill
-      resolve({ position, delay });
-    } else {
-      // Reject
-      reject({ position, delay });
-    }
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({ position, delay });
+      } else {
+        reject({ position, delay });
+      }
+    }, delay);
   });
 }
